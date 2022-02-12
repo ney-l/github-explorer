@@ -1,0 +1,14 @@
+@hostname = {{$dotenv REACT_APP_API_URL}}
+
+GET https://{{hostname}}/users
+Authorization: bearer {{$dotenv REACT_APP_API_TOKEN}}
+
+
+###  Get a user
+GET https://{{hostname}}/users/ney-l
+Authorization: bearer {{$dotenv REACT_APP_API_TOKEN}}
+
+
+###  Search users
+GET https://{{hostname}}/search/users?q=ney
+Authorization: bearer {{$dotenv REACT_APP_API_TOKEN}}
