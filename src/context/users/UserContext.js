@@ -1,4 +1,6 @@
-import { useState, createContext } from 'react';
+import { useReducer, createContext } from 'react';
+import { GET_USERS_ERROR, GET_USERS_SUCCESS } from './UserActionTypes';
+import { userReducer } from './UserReducer';
 
 export const UserContext = createContext();
 
@@ -6,9 +8,14 @@ const API_URL = process.env.REACT_APP_API_URL;
 const API_TOKEN = process.env.REACT_APP_API_TOKEN;
 
 export const UserProvider = ({ children }) => {
-  const [users, setUsers] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const initialState = {
+    users: [],
+    isLoading: true,
+    error: null,
+  };
+
+  const [state, dispatch] = useReducer(userReducer, initialState);
+  const { users, isLoading, error } = state;
 
   async function fetchUsers() {
     try {
@@ -18,12 +25,16 @@ export const UserProvider = ({ children }) => {
         },
       });
       const data = await response.json();
-      setUsers(data);
+      dispatch({
+        type: GET_USERS_SUCCESS,
+        payload: data,
+      });
     } catch (err) {
-      setError(err.message);
+      dispatch({
+        type: GET_USERS_ERROR,
+        payload: err.message,
+      });
       console.error(err);
-    } finally {
-      setIsLoading(false);
     }
   }
 
