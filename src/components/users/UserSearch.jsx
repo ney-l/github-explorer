@@ -3,7 +3,7 @@ import { useState, useContext } from 'react';
 
 export function UserSearch() {
   const [text, setText] = useState('');
-  const { users } = useContext(UserContext);
+  const { users, searchUsers } = useContext(UserContext);
 
   function isValid() {
     return !!text;
@@ -15,7 +15,7 @@ export function UserSearch() {
     if (!isValid) {
       alert('Please enter something');
     } else {
-      // @todo - search users
+      searchUsers(text);
       setText('');
     }
   }
