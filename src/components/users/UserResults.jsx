@@ -1,36 +1,14 @@
+import { useEffect, useContext } from 'react';
 import { Spinner } from 'components/layout/Spinner';
-import { useEffect, useState } from 'react';
+import { UserContext } from 'context/users/UserContext';
 import { UserItem } from './UserItem';
 
 export function UserResults() {
-  const [users, setUsers] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const { users, isLoading, error, fetchUsers } = useContext(UserContext);
 
   useEffect(() => {
     fetchUsers();
-
-    async function fetchUsers() {
-      try {
-        const response = await fetch(
-          `https://${process.env.REACT_APP_API_URL}/users`,
-          {
-            headers: {
-              Authorization: `token ${process.env.REACT_APP_API_TOKEN}`,
-            },
-          }
-        );
-        const data = await response.json();
-        setUsers(data);
-        console.log(data);
-      } catch (err) {
-        setError(err.message);
-        console.error(err);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-  }, [setError]);
+  }, [fetchUsers]);
 
   if (isLoading) {
     return <Spinner />;
