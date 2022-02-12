@@ -1,14 +1,10 @@
-import { useEffect, useContext } from 'react';
+import { useContext } from 'react';
 import { Spinner } from 'components/layout/Spinner';
 import { UserContext } from 'context/users/UserContext';
 import { UserItem } from './UserItem';
 
 export function UserResults() {
-  const { users, isLoading, error, fetchUsers } = useContext(UserContext);
-
-  useEffect(() => {
-    fetchUsers();
-  }, [fetchUsers]);
+  const { users, isLoading, error } = useContext(UserContext);
 
   if (isLoading) {
     return <Spinner />;
