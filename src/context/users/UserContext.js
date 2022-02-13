@@ -15,7 +15,6 @@ export const UserProvider = ({ children }) => {
   };
 
   const [state, dispatch] = useReducer(userReducer, initialState);
-  const { users, isLoading, error } = state;
 
   async function searchUsers(text) {
     try {
@@ -47,9 +46,7 @@ export const UserProvider = ({ children }) => {
   return (
     <UserContext.Provider
       value={{
-        users,
-        isLoading,
-        error,
+        ...state,
         searchUsers,
         clearUsers,
       }}
