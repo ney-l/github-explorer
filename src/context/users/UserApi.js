@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 const API_URL = process?.env?.REACT_APP_API_URL;
 const API_TOKEN = process?.env?.REACT_APP_API_TOKEN;
 
@@ -6,14 +8,18 @@ export async function fetchUsers(text) {
     const params = new URLSearchParams({
       q: text,
     });
-    const response = await fetch(`https://${API_URL}/search/users?${params}`, {
-      headers: {
-        Authorization: `token ${API_TOKEN}`,
-      },
-    });
-    const { items: users } = await response.json();
+    const { data } = await axios.get(
+      `https://${API_URL}/search/users?${params}`,
+      {
+        headers: {
+          Authorization: `token ${API_TOKEN}`,
+        },
+      }
+    );
+    const { items: users } = data;
     return { users };
   } catch (err) {
-    return { error: err.message };
+    const { status, data } = err.response ?? {};
+    return { error: data?.message ?? err.message, status };
   }
 }

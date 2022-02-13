@@ -14,7 +14,7 @@ export function UserResults() {
     return (
       <div>
         <h3>Oops, there was an error!</h3>
-        <p>{error}</p>
+        <p>Error: {error}</p>
       </div>
     );
   }
