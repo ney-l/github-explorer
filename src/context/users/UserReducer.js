@@ -41,6 +41,7 @@ export function userReducer(state, { type, payload }) {
       return {
         ...state,
         user: payload,
+        isLoading: false,
       };
 
     default:
