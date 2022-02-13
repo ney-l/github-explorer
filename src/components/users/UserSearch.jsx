@@ -6,17 +6,17 @@ export function UserSearch() {
   const { users, searchUsers, clearUsers } = useContext(UserContext);
 
   function isValid() {
-    return !!text;
+    return Boolean(text);
   }
 
   function handleSubmit(e) {
     e.preventDefault();
 
-    if (!isValid) {
-      alert('Please enter something');
-    } else {
-      searchUsers(text);
+    if (!isValid()) {
+      return alert('Please enter something');
     }
+
+    searchUsers(text);
   }
 
   function handleClear() {
