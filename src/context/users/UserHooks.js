@@ -1,9 +1,7 @@
 import { useReducer } from 'react';
 import { UserActions } from './UserActions';
+import { fetchUsers } from './UserApi';
 import { userReducer } from './UserReducer';
-
-const API_URL = process?.env?.REACT_APP_API_URL;
-const API_TOKEN = process?.env?.REACT_APP_API_TOKEN;
 
 export function useSearchUsers() {
   const initialState = {
@@ -15,26 +13,12 @@ export function useSearchUsers() {
   const [state, dispatch] = useReducer(userReducer, initialState);
 
   async function searchUsers(text) {
-    try {
-      dispatch(UserActions.startLoading());
-      const params = new URLSearchParams({
-        q: text,
-      });
-
-      const response = await fetch(
-        `https://${API_URL}/search/users?${params}`,
-        {
-          headers: {
-            Authorization: `token ${API_TOKEN}`,
-          },
-        }
-      );
-      const { items: users } = await response.json();
-      dispatch(UserActions.success(users));
-    } catch (err) {
-      dispatch(UserActions.error(err));
-      console.error(err);
+    dispatch(UserActions.startLoading());
+    const { users, error } = await fetchUsers(text);
+    if (error) {
+      return dispatch(UserActions.error(error));
     }
+    dispatch(UserActions.success(users));
   }
 
   async function clearUsers() {
