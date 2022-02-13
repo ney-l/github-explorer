@@ -1,9 +1,11 @@
+import { AlertContext } from 'context/alert/AlertContext';
 import { UserContext } from 'context/users/UserContext';
 import { useState, useContext } from 'react';
 
 export function UserSearch() {
   const [text, setText] = useState('');
   const { users, searchUsers, clearUsers } = useContext(UserContext);
+  const { setAlert } = useContext(AlertContext);
 
   const isValid = () => Boolean(text);
 
@@ -11,7 +13,10 @@ export function UserSearch() {
     e.preventDefault();
 
     if (!isValid()) {
-      return alert('Please enter something');
+      return setAlert({
+        message: 'Please enter something',
+        type: 'error',
+      });
     }
 
     searchUsers(text);
