@@ -5,7 +5,7 @@ import {
   GET_USERS_SUCCESS,
 } from './UserActionTypes';
 
-export const UserActions = {
+export const UserSearchActions = {
   startLoading: () => ({
     type: GET_USERS_START,
   }),
