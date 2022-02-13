@@ -1,20 +1,21 @@
 import { useReducer } from 'react';
-import { UserSearchActions } from './UserActions';
-import { fetchUsers } from './UserApi';
+import { UserActions, UserSearchActions } from './UserActions';
+import * as Api from './UserApi';
 import { userReducer } from './UserReducer';
 
+const initialState = {
+  users: [],
+  user: {},
+  isLoading: false,
+  error: null,
+};
+
 export function useSearchUsers() {
-  const initialState = {
-    users: [],
-    user: {},
-    isLoading: false,
-    error: null,
-  };
   const [state, dispatch] = useReducer(userReducer, initialState);
 
   async function searchUsers(text) {
     dispatch(UserSearchActions.startLoading());
-    const { users, error } = await fetchUsers(text);
+    const { users, error } = await Api.fetchUsers(text);
     if (error) {
       return dispatch(UserSearchActions.error(error));
     }
@@ -25,5 +26,14 @@ export function useSearchUsers() {
     dispatch(UserSearchActions.clear());
   }
 
-  return { state, searchUsers, clearUsers };
+  async function getUser(username) {
+    dispatch(UserActions.startLoading());
+    const { user, error } = await Api.getUser(username);
+    if (error) {
+      return dispatch(UserActions.error(error));
+    }
+    dispatch(UserActions.success(user));
+  }
+
+  return { state, searchUsers, clearUsers, getUser };
 }

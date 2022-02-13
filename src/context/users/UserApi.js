@@ -23,3 +23,17 @@ export async function fetchUsers(text) {
     return { error: data?.message ?? err.message, status };
   }
 }
+
+export async function getUser(username) {
+  try {
+    const { data } = await axios.get(`https://${API_URL}/users/${username}`, {
+      headers: {
+        Authorization: `token ${API_TOKEN}`,
+      },
+    });
+    return { user: data };
+  } catch (err) {
+    const { status, data } = err.response ?? {};
+    return { error: data?.message ?? err.message, status };
+  }
+}
