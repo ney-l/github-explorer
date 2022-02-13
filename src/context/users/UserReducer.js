@@ -1,4 +1,5 @@
 import {
+  CLEAR_USERS,
   GET_USERS_ERROR,
   GET_USERS_START,
   GET_USERS_SUCCESS,
@@ -23,6 +24,12 @@ export function userReducer(state, { type, payload }) {
         ...state,
         isLoading: false,
         error: payload,
+      };
+
+    case CLEAR_USERS:
+      return {
+        ...state,
+        users: [],
       };
 
     default:

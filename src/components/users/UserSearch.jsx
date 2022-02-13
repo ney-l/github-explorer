@@ -3,7 +3,7 @@ import { useState, useContext } from 'react';
 
 export function UserSearch() {
   const [text, setText] = useState('');
-  const { users, searchUsers } = useContext(UserContext);
+  const { users, searchUsers, clearUsers } = useContext(UserContext);
 
   function isValid() {
     return !!text;
@@ -16,8 +16,12 @@ export function UserSearch() {
       alert('Please enter something');
     } else {
       searchUsers(text);
-      setText('');
     }
+  }
+
+  function handleClear() {
+    setText('');
+    clearUsers();
   }
 
   return (
@@ -45,7 +49,9 @@ export function UserSearch() {
       </div>
       {users.length > 0 && (
         <div>
-          <button className="btn btn-ghost btn-lg">Clear</button>
+          <button onClick={handleClear} className="btn btn-ghost btn-lg">
+            Clear
+          </button>
         </div>
       )}
     </div>

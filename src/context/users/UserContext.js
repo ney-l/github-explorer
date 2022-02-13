@@ -40,6 +40,10 @@ export const UserProvider = ({ children }) => {
     }
   }
 
+  async function clearUsers() {
+    dispatch(UserActions.clear());
+  }
+
   return (
     <UserContext.Provider
       value={{
@@ -47,6 +51,7 @@ export const UserProvider = ({ children }) => {
         isLoading,
         error,
         searchUsers,
+        clearUsers,
       }}
     >
       {children}

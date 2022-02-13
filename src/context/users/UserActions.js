@@ -1,4 +1,5 @@
 import {
+  CLEAR_USERS,
   GET_USERS_ERROR,
   GET_USERS_START,
   GET_USERS_SUCCESS,
@@ -15,5 +16,8 @@ export const UserActions = {
   error: (errMessage) => ({
     type: GET_USERS_ERROR,
     payload: errMessage,
+  }),
+  clear: () => ({
+    type: CLEAR_USERS,
   }),
 };
