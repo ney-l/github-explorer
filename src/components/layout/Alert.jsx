@@ -1,6 +1,8 @@
 import { useContext } from 'react';
 import { AlertContext } from 'context/alert/AlertContext';
 
+export const ERROR = 'ERROR';
+
 export function Alert() {
   const { alert } = useContext(AlertContext);
 
@@ -11,7 +13,7 @@ export function Alert() {
 
   return (
     <p className="flex items-start mb-4 space-x-2">
-      {type === 'error' && (
+      {type === ERROR && (
         <svg
           className="w-6 h-6 flex-none mt-0.5"
           fill="none"

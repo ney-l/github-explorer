@@ -1,6 +1,8 @@
+import { useState, useContext } from 'react';
+
+import { ERROR } from 'components/layout/Alert';
 import { AlertContext } from 'context/alert/AlertContext';
 import { UserContext } from 'context/users/UserContext';
-import { useState, useContext } from 'react';
 
 export function UserSearch() {
   const [text, setText] = useState('');
@@ -15,7 +17,7 @@ export function UserSearch() {
     if (!isValid()) {
       return setAlert({
         message: 'Please enter something',
-        type: 'error',
+        type: ERROR,
       });
     }
 
