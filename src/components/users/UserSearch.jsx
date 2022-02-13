@@ -5,9 +5,7 @@ export function UserSearch() {
   const [text, setText] = useState('');
   const { users, searchUsers, clearUsers } = useContext(UserContext);
 
-  function isValid() {
-    return Boolean(text);
-  }
+  const isValid = () => Boolean(text);
 
   function handleSubmit(e) {
     e.preventDefault();
