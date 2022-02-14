@@ -4,6 +4,9 @@ import {
   GET_USERS_START,
   GET_USERS_SUCCESS,
   GET_USER_ERROR,
+  GET_USER_REPOS_ERROR,
+  GET_USER_REPOS_START,
+  GET_USER_REPOS_SUCCESS,
   GET_USER_START,
   GET_USER_SUCCESS,
 } from './UserActionTypes';
@@ -36,6 +39,21 @@ export const UserActions = {
   }),
   error: (message) => ({
     type: GET_USER_ERROR,
+    payload: message,
+  }),
+};
+
+export const UserRepoActions = {
+  startLoading: (username) => ({
+    type: GET_USER_REPOS_START,
+    payload: username,
+  }),
+  success: (repos) => ({
+    type: GET_USER_REPOS_SUCCESS,
+    payload: repos,
+  }),
+  error: (message) => ({
+    type: GET_USER_REPOS_ERROR,
     payload: message,
   }),
 };

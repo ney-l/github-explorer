@@ -1,5 +1,5 @@
 import { useReducer } from 'react';
-import { UserActions, UserSearchActions } from './UserActions';
+import { UserActions, UserRepoActions, UserSearchActions } from './UserActions';
 import * as Api from './UserApi';
 import { userReducer } from './UserReducer';
 
@@ -8,6 +8,7 @@ const initialState = {
   user: {},
   isLoading: false,
   error: null,
+  repos: [],
 };
 
 export function useSearchUsers() {
@@ -35,5 +36,14 @@ export function useSearchUsers() {
     dispatch(UserActions.success(user));
   }
 
-  return { state, searchUsers, clearUsers, getUser };
+  async function getUserRepos(username) {
+    dispatch(UserRepoActions.startLoading());
+    const { repos, error } = await Api.getRepos(username);
+    if (error) {
+      return dispatch(UserRepoActions.error());
+    }
+    dispatch(UserRepoActions.success(repos));
+  }
+
+  return { state, searchUsers, clearUsers, getUser, getUserRepos };
 }

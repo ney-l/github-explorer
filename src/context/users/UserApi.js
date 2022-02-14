@@ -29,3 +29,13 @@ export async function getUser(username) {
     return { error: data?.message ?? err.message, status };
   }
 }
+
+export async function getRepos(username) {
+  try {
+    const { data } = await axios.get(`/users/${username}/repos`);
+    return { repos: data };
+  } catch (err) {
+    const { status, data } = err.response ?? {};
+    return { error: data?.message ?? err.message, status };
+  }
+}

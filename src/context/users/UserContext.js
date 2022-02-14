@@ -4,7 +4,8 @@ import { useSearchUsers } from 'context/users/UserHooks';
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  const { state, searchUsers, clearUsers, getUser } = useSearchUsers();
+  const { state, searchUsers, clearUsers, getUser, getUserRepos } =
+    useSearchUsers();
 
   return (
     <UserContext.Provider
@@ -13,6 +14,7 @@ export const UserProvider = ({ children }) => {
         searchUsers,
         clearUsers,
         getUser,
+        getUserRepos,
       }}
     >
       {children}

@@ -9,10 +9,14 @@ import { UserInfo } from 'components/users/UserInfo';
 
 export function User() {
   const { username } = useParams();
-  const { getUser, isLoading, user } = useContext(UserContext);
+  const { getUser, isLoading, user, getUserRepos, repos } =
+    useContext(UserContext);
 
   useEffect(() => {
     getUser(username);
+    const userRepo = repos[username];
+    if (userRepo) return;
+    getUserRepos(username);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [username]);
 
