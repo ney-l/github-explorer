@@ -1,10 +1,8 @@
 import axios from 'axios';
 
 const API_URL = process?.env?.REACT_APP_API_URL;
-// const API_TOKEN = process?.env?.REACT_APP_API_TOKEN;
 
 axios.defaults.baseURL = `https://${API_URL}`;
-// axios.defaults.headers.common['Authorization'] = `token ${API_TOKEN}`;
 
 export async function fetchUsers(text) {
   try {
