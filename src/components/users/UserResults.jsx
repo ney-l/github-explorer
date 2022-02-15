@@ -1,6 +1,6 @@
 import { useContext } from 'react';
-import { Spinner } from 'components/layout/Spinner';
-import { UserContext } from 'context/users/UserContext';
+import { Spinner } from 'components/layout';
+import { UserContext } from 'context/users';
 import { UserItem } from 'components/users';
 
 export function UserResults() {
