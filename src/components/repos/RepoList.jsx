@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { RepoItem } from './RepoItem';
+import { RepoItem } from 'components/repos';
 
 export function RepoList({ repos }) {
   if (!repos || !repos.length) {

@@ -9,7 +9,7 @@ import {
   GET_USER_REPOS_SUCCESS,
   GET_USER_START,
   GET_USER_SUCCESS,
-} from './UserActionTypes';
+} from 'context/users';
 
 export const UserSearchActions = {
   startLoading: () => ({

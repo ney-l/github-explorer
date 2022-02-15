@@ -1,7 +1,6 @@
 import { useReducer } from 'react';
 import { UserActions, UserRepoActions, UserSearchActions } from './UserActions';
-import * as Api from './UserApi';
-import { userReducer } from './UserReducer';
+import { Api, userReducer } from 'context/users';
 
 const initialState = {
   users: [],

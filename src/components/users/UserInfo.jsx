@@ -1,4 +1,4 @@
-import { Tile } from './Tile';
+import { Tile } from 'components/users';
 
 export function UserInfo({ user }) {
   const {

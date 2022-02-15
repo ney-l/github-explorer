@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { useSearchUsers } from 'context/users/UserHooks';
+import { useSearchUsers } from 'context/users';
 
 export const UserContext = createContext();
 

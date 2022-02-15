@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { Spinner } from 'components/layout/Spinner';
 import { UserContext } from 'context/users/UserContext';
-import { UserItem } from './UserItem';
+import { UserItem } from 'components/users';
 
 export function UserResults() {
   const { users, isLoading, error } = useContext(UserContext);

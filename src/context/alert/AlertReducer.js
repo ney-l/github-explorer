@@ -1,4 +1,4 @@
-import { REMOVE_ALERT, SET_ALERT } from './AlertActionTypes';
+import { REMOVE_ALERT, SET_ALERT } from 'context/alert';
 
 export function alertReducer(state, { type, payload }) {
   switch (type) {

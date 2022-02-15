@@ -1,8 +1,7 @@
 import { useState, useContext } from 'react';
 
-import { ERROR } from 'components/layout/Alert';
-import { AlertContext } from 'context/alert/AlertContext';
-import { UserContext } from 'context/users/UserContext';
+import { ERROR } from 'components/layout';
+import { AlertContext, UserContext } from 'context';
 
 export function UserSearch() {
   const [text, setText] = useState('');
