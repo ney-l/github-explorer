@@ -1,21 +1,13 @@
-import { createContext, useReducer } from 'react';
-import { AlertActions, alertReducer } from 'context/alert';
+import { createContext } from 'react';
+import { useAlert } from 'context/alert';
 
 export const AlertContext = createContext();
 
 export function AlertProvider({ children }) {
-  const initialState = null;
-  const [state, dispatch] = useReducer(alertReducer, initialState);
+  const { alert, setAlert } = useAlert();
 
-  function setAlert({ message, type }) {
-    dispatch(AlertActions.setAlert({ message, type }));
-
-    setTimeout(() => {
-      dispatch(AlertActions.remove());
-    }, 3000);
-  }
   return (
-    <AlertContext.Provider value={{ alert: state, setAlert }}>
+    <AlertContext.Provider value={{ alert, setAlert }}>
       {children}
     </AlertContext.Provider>
   );
