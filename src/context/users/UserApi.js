@@ -32,7 +32,11 @@ export async function getUser(username) {
 
 export async function getRepos(username) {
   try {
-    const { data } = await axios.get(`/users/${username}/repos`);
+    const params = new URLSearchParams({
+      sort: 'created',
+      per_page: 10,
+    });
+    const { data } = await axios.get(`/users/${username}/repos?${params}`);
     return { repos: data };
   } catch (err) {
     const { status, data } = err.response ?? {};

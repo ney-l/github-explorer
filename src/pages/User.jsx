@@ -6,19 +6,22 @@ import { FaCodepen, FaStore, FaUserFriends, FaUsers } from 'react-icons/fa';
 import { Stat } from 'components/users/Stat';
 import { ProfileImage } from 'components/users/ProfileImage';
 import { UserInfo } from 'components/users/UserInfo';
+import { RepoList } from 'components/repos/RepoList';
 
 export function User() {
   const { username } = useParams();
   const { getUser, isLoading, user, getUserRepos, repos } =
     useContext(UserContext);
 
+  const userRepo = repos[username];
+
   useEffect(() => {
     getUser(username);
-    const userRepo = repos[username];
+
     if (userRepo) return;
     getUserRepos(username);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [username]);
+  }, [username, userRepo]);
 
   if (isLoading) {
     return <Spinner />;
@@ -55,6 +58,8 @@ export function User() {
           <Stat title="Public Repos" value={publicRepos} Icon={FaCodepen} />
           <Stat title="Public Gists" value={publicGists} Icon={FaStore} />
         </div>
+
+        <RepoList repos={userRepo} />
       </div>
     </>
   );
