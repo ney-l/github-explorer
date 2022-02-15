@@ -28,7 +28,7 @@ export function UserInfo({ user }) {
             rel="noreferrer"
             className="btn btn-outline"
           >
-            Visit Github Profile
+            Visit GitHub Profile
           </a>
         </div>
       </div>
