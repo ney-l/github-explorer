@@ -5,11 +5,11 @@ export function RepoItem({ repo }) {
   const {
     name,
     description,
-    html_url: htmlUrl,
+    htmlUrl,
     forks,
-    open_issues: openIssues,
-    watchers_count: watchersCount,
-    stargazers_count: stargazersCount,
+    openIssues,
+    watchersCount,
+    stargazersCount,
   } = repo;
   return (
     <div className="mb-2 rounded-md card bg-gray-800 hover:bg-gray-900 text-white">

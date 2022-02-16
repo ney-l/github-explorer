@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Formatters } from 'utils';
 
 const API_URL = process?.env?.REACT_APP_API_URL;
 
@@ -23,7 +24,8 @@ export async function fetchUsers(text) {
     });
     const { data } = await axios.get(`/search/users?${params}`);
     const { items: users } = data;
-    return { users };
+
+    return { users: Formatters.camelCaseArr(users) };
   } catch (err) {
     return getError(err);
   }
@@ -32,7 +34,7 @@ export async function fetchUsers(text) {
 export async function getUser(username) {
   try {
     const { data } = await axios.get(`/users/${username}`);
-    return { user: data };
+    return { user: Formatters.camelCaseKeys(data) };
   } catch (err) {
     return getError(err);
   }
@@ -45,7 +47,7 @@ export async function getRepos(username) {
       per_page: 10,
     });
     const { data } = await axios.get(`/users/${username}/repos?${params}`);
-    return { repos: data };
+    return { repos: Formatters.camelCaseArr(data) };
   } catch (err) {
     return getError(err);
   }

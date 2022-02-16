@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-export function UserItem({ user: { login: username, avatar_url: avatarUrl } }) {
+export function UserItem({ user: { login: username, avatarUrl } }) {
   return (
     <div className="card shadow-md compact side bg-base-100">
       <div className="flex-row items-center space-x-4 card-body">

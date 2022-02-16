@@ -6,10 +6,10 @@ export function UserInfo({ user }) {
     type,
     hireable,
     bio,
-    html_url: htmlUrl,
+    htmlUrl,
     location,
     blog: website,
-    twitter_username: twitterUsername,
+    twitterUsername,
   } = user ?? {};
   return (
     <>

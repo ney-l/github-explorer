@@ -27,14 +27,8 @@ export function User() {
     return <Spinner />;
   }
 
-  const {
-    avatar_url: avatarUrl,
-    name,
-    followers,
-    following,
-    public_repos: publicRepos,
-    public_gists: publicGists,
-  } = user ?? {};
+  const { avatarUrl, name, followers, following, publicRepos, publicGists } =
+    user ?? {};
 
   return (
     <>
