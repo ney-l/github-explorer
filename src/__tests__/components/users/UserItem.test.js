@@ -15,7 +15,7 @@ test('renders user info', () => {
     user.avatarUrl
   );
   expect(screen.getByText(user.login).innerHTML).toBe(user.login);
-  expect(screen.getByText('Visit Profile')).toHaveAttribute(
+  expect(screen.getByText(/visit profile/i)).toHaveAttribute(
     'href',
     `/users/${user.login}`
   );
