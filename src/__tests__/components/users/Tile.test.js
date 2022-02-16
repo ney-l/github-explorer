@@ -6,13 +6,15 @@ test('renders nothing if no `value` prop passed', () => {
     title: 'My Title',
     externalLink: 'https://google.com',
   };
-  const { container } = render(
+  render(
     <Tile title={props.title} value={null} externalLink={props.externalLink} />
   );
-  expect(container.firstChild).toBeNull();
+  expect(screen.queryByText(props.title)).not.toBeInTheDocument();
+  expect(screen.queryByText(props.externalLink)).not.toBeInTheDocument();
 
-  const { container: container2 } = render(<Tile />);
-  expect(container2.firstChild).toBeNull();
+  render(<Tile />);
+  expect(screen.queryByText(props.title)).not.toBeInTheDocument();
+  expect(screen.queryByText(props.externalLink)).not.toBeInTheDocument();
 });
 
 test('renders title and value', () => {
