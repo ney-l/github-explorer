@@ -34,6 +34,12 @@ export function About() {
           {repoLink}
         </a>
       </p>
+      <p className="text-lg text-gray-400">
+        Best Practices:{' '}
+        <span className="text-white">
+          Scalable folder structure, Absolute imports, Error Handling
+        </span>
+      </p>
     </div>
   );
 }
