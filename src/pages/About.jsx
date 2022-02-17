@@ -1,10 +1,11 @@
+import { APP_NAME } from 'components/layout';
 import { FaLink } from 'react-icons/fa';
 
 export function About() {
   const repoLink = 'https://github.com/ney-l/github-explorer';
   return (
     <div>
-      <h1 className="text-6xl mb-4">Github Explorer</h1>
+      <h1 className="text-6xl mb-4">{APP_NAME}</h1>
       <p className="mb-4 text-2xl font-light">
         A React app to search GitHub profiles and see profile details. This
         project is built by Neha Lanjewar, owner of
@@ -19,7 +20,8 @@ export function About() {
       <p className="text-lg text-gray-400">
         Technologies Used:{' '}
         <span className="text-white">
-          React, React Router Dom, Tailwind CSS, Daisy UI, GitHub REST API.
+          React, React Router Dom, Tailwind CSS, Daisy UI, GitHub REST API,
+          React Testing Library, Jest.
         </span>
       </p>
       <p className="text-lg text-gray-400">
@@ -37,7 +39,8 @@ export function About() {
       <p className="text-lg text-gray-400">
         Best Practices:{' '}
         <span className="text-white">
-          Scalable folder structure, Absolute imports, Error Handling
+          Scalable folder structure, Absolute imports, Error Handling, Unit
+          Tests, Integration Tests,
         </span>
       </p>
     </div>
