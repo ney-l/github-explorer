@@ -45,3 +45,23 @@ test('renders title, value and external link', () => {
   const anchorNode = screen.getByText(props.value);
   expect(anchorNode).toHaveAttribute('href', props.externalLink);
 });
+
+test('opens external link in a new tab', () => {
+  const props = {
+    title: 'My Title',
+    externalLink: 'https://google.com',
+    value: 'My Value',
+  };
+  render(
+    <Tile
+      title={props.title}
+      externalLink={props.externalLink}
+      value={props.value}
+    />
+  );
+  expect(screen.getByText(props.title).innerHTML).toBe(props.title);
+  const anchorNode = screen.getByText(props.value);
+  expect(anchorNode).toHaveAttribute('href', props.externalLink);
+  expect(anchorNode).toHaveAttribute('target', '_blank');
+  expect(anchorNode).toHaveAttribute('rel', 'noreferrer');
+});
