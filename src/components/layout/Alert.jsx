@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { AlertContext } from 'context/alert';
+import { AlertContext } from 'context';
 
 export const ERROR = 'ERROR';
 
