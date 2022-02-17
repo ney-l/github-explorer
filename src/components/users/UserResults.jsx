@@ -1,5 +1,5 @@
+import PropTypes from 'prop-types';
 import { Spinner } from 'components/layout';
-
 import { UserItem } from 'components/users';
 
 export function UserResults({ isLoading, error, users }) {
@@ -11,7 +11,9 @@ export function UserResults({ isLoading, error, users }) {
     return (
       <div>
         <h3>Oops, there was an error!</h3>
-        <p>Error: {error}</p>
+        <p>
+          Error: <span>{error}</span>
+        </p>
       </div>
     );
   }
@@ -24,3 +26,9 @@ export function UserResults({ isLoading, error, users }) {
     </div>
   );
 }
+
+UserItem.defaultProps = {
+  isLoading: PropTypes.bool,
+  error: PropTypes.string,
+  users: PropTypes.array,
+};
