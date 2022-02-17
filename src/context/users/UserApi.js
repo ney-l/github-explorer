@@ -3,7 +3,8 @@ import { Formatters } from 'utils';
 
 const API_URL = process?.env?.REACT_APP_API_URL;
 
-axios.defaults.baseURL = `https://${API_URL}`;
+export const baseUrl = `https://${API_URL}`;
+axios.defaults.baseURL = baseUrl;
 
 function getError(err) {
   const { status, data } = err.response ?? {};
