@@ -27,7 +27,7 @@ export function UserResults({ isLoading, error, users }) {
   );
 }
 
-UserItem.defaultProps = {
+UserItem.propTypes = {
   isLoading: PropTypes.bool,
   error: PropTypes.string,
   users: PropTypes.array,
