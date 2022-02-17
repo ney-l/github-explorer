@@ -6,7 +6,13 @@ import { UserSearch } from 'components/users';
 describe('Search form', () => {
   test('calls `setAlert` prop fn when blank form submitted', () => {
     const mockSetAlert = jest.fn();
-    render(<UserSearch setAlert={mockSetAlert} />);
+    render(
+      <UserSearch
+        setAlert={mockSetAlert}
+        searchUsers={jest.fn}
+        clearUsers={jest.fn}
+      />
+    );
 
     const input = screen.getByRole('textbox');
     userEvent.type(input, '');
@@ -24,7 +30,13 @@ describe('Search form', () => {
   test('calls searchUsers prop fn when valid form submitted', () => {
     const searchTerm = 'something';
     const mockSearchUsers = jest.fn();
-    render(<UserSearch searchUsers={mockSearchUsers} />);
+    render(
+      <UserSearch
+        searchUsers={mockSearchUsers}
+        clearUsers={jest.fn}
+        setAlert={jest.fn}
+      />
+    );
     userEvent.type(screen.getByRole('textbox'), searchTerm);
     userEvent.click(screen.getByRole('button', { name: /go/i }));
     expect(mockSearchUsers).toHaveBeenCalledTimes(1);
@@ -34,13 +46,25 @@ describe('Search form', () => {
 
 describe('Search field', () => {
   test('search field is empty by default', () => {
-    render(<UserSearch />);
+    render(
+      <UserSearch
+        searchUsers={jest.fn}
+        setAlert={jest.fn}
+        clearUsers={jest.fn}
+      />
+    );
     expect(screen.getByRole('textbox')).toHaveValue('');
   });
 
   test('user can type in the input element', () => {
     const sampleText = 'something';
-    render(<UserSearch />);
+    render(
+      <UserSearch
+        searchUsers={jest.fn}
+        setAlert={jest.fn}
+        clearUsers={jest.fn}
+      />
+    );
     const input = screen.getByRole('textbox');
     userEvent.type(input, sampleText);
     expect(input).toHaveValue(sampleText);
@@ -50,20 +74,40 @@ describe('Search field', () => {
 describe('Clear Button', () => {
   const users = [{ id: 1 }, { id: 2 }];
   test('does not show if users is not provided', () => {
-    render(<UserSearch />);
+    render(
+      <UserSearch
+        searchUsers={jest.fn}
+        setAlert={jest.fn}
+        clearUsers={jest.fn}
+      />
+    );
 
     expect(screen.queryByRole('button', { name: /clear/i })).toBeNull();
   });
 
   test('shows if users is passed', () => {
-    render(<UserSearch users={users} />);
+    render(
+      <UserSearch
+        users={users}
+        searchUsers={jest.fn}
+        setAlert={jest.fn}
+        clearUsers={jest.fn}
+      />
+    );
 
     expect(screen.queryByRole('button', { name: /clear/i })).toBeVisible();
   });
 
   test('on clicking, clears text', () => {
     const mockClearUsers = jest.fn();
-    render(<UserSearch users={users} clearUsers={mockClearUsers} />);
+    render(
+      <UserSearch
+        users={users}
+        clearUsers={mockClearUsers}
+        searchUsers={jest.fn}
+        setAlert={jest.fn}
+      />
+    );
 
     const input = screen.getByRole('textbox');
 

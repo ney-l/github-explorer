@@ -1,5 +1,5 @@
 import { useState } from 'react';
-
+import PropTypes from 'prop-types';
 import { ERROR } from 'components/layout';
 
 export function UserSearch({ users, setAlert, searchUsers, clearUsers }) {
@@ -58,3 +58,10 @@ export function UserSearch({ users, setAlert, searchUsers, clearUsers }) {
     </div>
   );
 }
+
+UserSearch.propTypes = {
+  users: PropTypes.array,
+  setAlert: PropTypes.func.isRequired,
+  searchUsers: PropTypes.func.isRequired,
+  clearUsers: PropTypes.func.isRequired,
+};
