@@ -3,14 +3,16 @@ import userEvent from '@testing-library/user-event';
 import { ERROR } from 'components/layout';
 import { UserSearch } from 'components/users';
 
+afterEach(() => jest.clearAllMocks());
+
 describe('Search form', () => {
   test('calls `setAlert` prop fn when blank form submitted', () => {
     const mockSetAlert = jest.fn();
     render(
       <UserSearch
         setAlert={mockSetAlert}
-        searchUsers={jest.fn}
-        clearUsers={jest.fn}
+        searchUsers={() => {}}
+        clearUsers={() => {}}
       />
     );
 
@@ -33,8 +35,8 @@ describe('Search form', () => {
     render(
       <UserSearch
         searchUsers={mockSearchUsers}
-        clearUsers={jest.fn}
-        setAlert={jest.fn}
+        clearUsers={() => {}}
+        setAlert={() => {}}
       />
     );
     userEvent.type(screen.getByRole('textbox'), searchTerm);
@@ -48,9 +50,9 @@ describe('Search field', () => {
   test('search field is empty by default', () => {
     render(
       <UserSearch
-        searchUsers={jest.fn}
-        setAlert={jest.fn}
-        clearUsers={jest.fn}
+        searchUsers={() => {}}
+        setAlert={() => {}}
+        clearUsers={() => {}}
       />
     );
     expect(screen.getByRole('textbox')).toHaveValue('');
@@ -60,9 +62,9 @@ describe('Search field', () => {
     const sampleText = 'something';
     render(
       <UserSearch
-        searchUsers={jest.fn}
-        setAlert={jest.fn}
-        clearUsers={jest.fn}
+        searchUsers={() => {}}
+        setAlert={() => {}}
+        clearUsers={() => {}}
       />
     );
     const input = screen.getByRole('textbox');
@@ -76,9 +78,9 @@ describe('Clear Button', () => {
   test('does not show if users is not provided', () => {
     render(
       <UserSearch
-        searchUsers={jest.fn}
-        setAlert={jest.fn}
-        clearUsers={jest.fn}
+        searchUsers={() => {}}
+        setAlert={() => {}}
+        clearUsers={() => {}}
       />
     );
 
@@ -89,9 +91,9 @@ describe('Clear Button', () => {
     render(
       <UserSearch
         users={users}
-        searchUsers={jest.fn}
-        setAlert={jest.fn}
-        clearUsers={jest.fn}
+        searchUsers={() => {}}
+        setAlert={() => {}}
+        clearUsers={() => {}}
       />
     );
 
@@ -104,8 +106,8 @@ describe('Clear Button', () => {
       <UserSearch
         users={users}
         clearUsers={mockClearUsers}
-        searchUsers={jest.fn}
-        setAlert={jest.fn}
+        searchUsers={() => {}}
+        setAlert={() => {}}
       />
     );
 
