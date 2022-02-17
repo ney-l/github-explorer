@@ -6,7 +6,7 @@ export const ERROR = 'ERROR';
 export function Alert() {
   const { alert } = useContext(AlertContext);
 
-  if (alert === null) {
+  if (!alert) {
     return null;
   }
   const { message, type } = alert ?? {};
@@ -15,6 +15,7 @@ export function Alert() {
     <p className="flex items-start mb-4 space-x-2">
       {type === ERROR && (
         <svg
+          data-testid="error-icon"
           className="w-6 h-6 flex-none mt-0.5"
           fill="none"
           viewBox="0 0 24 24"
