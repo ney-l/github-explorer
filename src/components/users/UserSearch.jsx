@@ -1,12 +1,9 @@
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 
 import { ERROR } from 'components/layout';
-import { AlertContext, UserContext } from 'context';
 
-export function UserSearch() {
+export function UserSearch({ users, setAlert, searchUsers, clearUsers }) {
   const [text, setText] = useState('');
-  const { users, searchUsers, clearUsers } = useContext(UserContext);
-  const { setAlert } = useContext(AlertContext);
 
   const isValid = () => Boolean(text);
 
