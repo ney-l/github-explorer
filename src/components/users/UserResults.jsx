@@ -1,11 +1,8 @@
-import { useContext } from 'react';
 import { Spinner } from 'components/layout';
-import { UserContext } from 'context/users';
+
 import { UserItem } from 'components/users';
 
-export function UserResults() {
-  const { users, isLoading, error } = useContext(UserContext);
-
+export function UserResults({ isLoading, error, users }) {
   if (isLoading) {
     return <Spinner />;
   }
