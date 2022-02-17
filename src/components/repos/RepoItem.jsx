@@ -23,16 +23,24 @@ export function RepoItem({ repo }) {
         <p className="mb-3">{description}</p>
         <div>
           <div className="mr-2 badge badge-info badge-lg">
-            <FaEye className="mr-2" /> {watchersCount}
+            <FaEye role="img" aria-label="watchers count" className="mr-2" />{' '}
+            <span data-testid="watchers-count">{watchersCount}</span>
           </div>
           <div className="mr-2 badge badge-success badge-lg">
-            <FaStar className="mr-2" /> {stargazersCount}
+            <FaStar role="img" aria-label="stargazers count" className="mr-2" />{' '}
+            <span data-testid="stargazers-count">{stargazersCount}</span>
           </div>
           <div className="mr-2 badge badge-error badge-lg">
-            <FaInfo className="mr-2" /> {openIssues}
+            <FaInfo
+              role="img"
+              aria-label="open issues count"
+              className="mr-2"
+            />{' '}
+            <span data-testid="open-issues-count">{openIssues}</span>
           </div>
           <div className="mr-2 badge badge-warning badge-lg">
-            <FaUtensils className="mr-2" /> {forks}
+            <FaUtensils role="img" aria-label="forks count" className="mr-2" />{' '}
+            <span data-testid="forks-count">{forks}</span>
           </div>
         </div>
       </div>
