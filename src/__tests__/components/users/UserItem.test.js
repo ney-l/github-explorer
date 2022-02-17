@@ -7,9 +7,7 @@ test('renders user info', () => {
     login: 'some_user',
     avatarUrl: 'https://somewhere/some-image.png',
   };
-
-  const { debug } = render(<UserItem user={user} />, { wrapper: MemoryRouter });
-  debug();
+  render(<UserItem user={user} />, { wrapper: MemoryRouter });
   expect(screen.getByAltText(/profile/i)).toHaveAttribute(
     'src',
     user.avatarUrl
