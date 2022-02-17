@@ -17,7 +17,7 @@ test('initial state', () => {
 
   const { alert, setAlert } = result.current;
   expect(alert).toBeNull();
-  expect(setAlert).toBeDefined();
+  expect(typeof setAlert).toBe('function');
 
   // this is needed to flush out the setTimeout
   // that is automatically set up by calling `setAlert()`
