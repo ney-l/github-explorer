@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import logo from 'logo.svg';
 
+export const APP_NAME = 'GitHub Explorer';
+
 export function Navbar({ title }) {
   return (
     <nav className="navbar mb-12 shadow-lg bg-neutral text-neutral-content">
@@ -34,7 +36,7 @@ export function Navbar({ title }) {
 }
 
 Navbar.defaultProps = {
-  title: 'GitHub Explorer',
+  title: APP_NAME,
 };
 
 Navbar.propTypes = {
