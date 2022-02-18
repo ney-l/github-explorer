@@ -1,7 +1,7 @@
 import { renderHook, act } from '@testing-library/react-hooks';
 import { useSearchUsers, initialState } from 'context/users';
 import { server } from 'mocks/browser';
-import { repos, user, users } from 'mocks/data';
+import { repos, TEST_USER_ID, user, users } from 'mocks/data';
 import {
   getReposApiLimitError,
   getUserApiLimitError,
@@ -68,7 +68,7 @@ test('clears user data', async () => {
 });
 
 describe('getUser', () => {
-  const username = 'ney-l';
+  const username = TEST_USER_ID;
   test('gets user data if api returns success', async () => {
     const { result } = renderHook(useSearchUsers);
     expect(result.current.state.user).toEqual({});
@@ -93,7 +93,7 @@ describe('getUser', () => {
 
 describe('get user repos', () => {
   test('updates repo state if api returns success', async () => {
-    const username = 'ney-l';
+    const username = TEST_USER_ID;
     const { result } = renderHook(useSearchUsers);
 
     await act(async () => await result.current.getUserRepos(username));
@@ -106,7 +106,7 @@ describe('get user repos', () => {
   });
   test('updates error state if api returns error', async () => {
     server.use(getReposApiLimitError);
-    const username = 'ney-l';
+    const username = TEST_USER_ID;
     const { result } = renderHook(useSearchUsers);
 
     await act(async () => await result.current.getUserRepos(username));
