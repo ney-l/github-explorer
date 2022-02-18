@@ -2,8 +2,9 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 
-import { apiLimitErrorResponse, users } from 'mocks/handlers';
+import { searchApiLimitError } from 'mocks/handlers';
 import { server } from 'mocks/browser';
+import { users } from 'mocks/data';
 import { AlertProvider, UserProvider } from 'context';
 import { Home } from 'pages';
 
@@ -29,7 +30,7 @@ test('On form submit, shows users', async () => {
 });
 
 test('shows error if api returns error', async () => {
-  server.use(apiLimitErrorResponse);
+  server.use(searchApiLimitError);
   const searchTerm = 'something';
   render(
     <MemoryRouter>
@@ -43,7 +44,6 @@ test('shows error if api returns error', async () => {
 
   userEvent.type(screen.getByRole('textbox'), searchTerm);
   userEvent.click(screen.getByRole('button', { name: /go/i }));
-
   await screen.findByText('Oops, there was an error!');
   await screen.findByText(/github api rate limit exceeded/i);
 });
