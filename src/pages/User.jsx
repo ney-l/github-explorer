@@ -22,7 +22,7 @@ export function User() {
     if (userRepo) return;
     getUserRepos(username);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [username, userRepo]);
+  }, [username]);
 
   if (isLoading) {
     return <Spinner />;
