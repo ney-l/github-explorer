@@ -1,10 +1,10 @@
 import { rest } from 'msw';
 import { baseUrl } from 'context/users/UserApi';
-import { repos, user, users } from './data';
+import { repos, TEST_USER_ID, user, users } from './data';
 
 export const Endpoints = {
   search: `${baseUrl}/search/users`,
-  user: `${baseUrl}/users/*`,
+  user: `${baseUrl}/users/:username`,
   repos: `${baseUrl}/users/*/repos`,
 };
 
@@ -40,7 +40,16 @@ export const getReposApiLimitError = createApiLimitErrorResponseForRoute(
 );
 
 const userResponse = rest.get(Endpoints.user, (req, res, ctx) => {
-  return res(ctx.json(user));
+  if (req.params.username === TEST_USER_ID) {
+    return res(ctx.json(user));
+  }
+
+  return res(
+    ctx.status(404),
+    ctx.json({
+      message: 'Not Found',
+    })
+  );
 });
 
 export const handlers = [userSearchResponse, userRepoResponse, userResponse];
