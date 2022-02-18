@@ -32,6 +32,10 @@ export function User() {
     navigate('/notfound');
   }
 
+  if (!user) {
+    return null;
+  }
+
   const { avatarUrl, name, followers, following, publicRepos, publicGists } =
     user ?? {};
 
