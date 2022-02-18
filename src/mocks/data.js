@@ -22,10 +22,7 @@ export const user = {
 
 export const TEST_USER_ID = user.login;
 
-export const users = [
-  { id: 1, login: 'user1' },
-  { id: 2, login: 'user2' },
-];
+export const users = [user, { id: 2, login: 'user2', name: 'Test user two' }];
 
 export const repos = [
   {
