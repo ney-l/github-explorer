@@ -8,6 +8,7 @@ import { AlertProvider, UserProvider } from 'context';
 import { BrowserRouter } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
 import { repos, TEST_USER_ID, users } from 'mocks/data';
+import { APP_NAME } from 'components/layout';
 
 const renderWithProviders = (ui, { route = '/' } = {}) => {
   window.history.pushState({}, 'Test page', route);
@@ -23,7 +24,7 @@ const renderWithProviders = (ui, { route = '/' } = {}) => {
   return render(ui, { wrapper: Wrapper });
 };
 
-test.skip('search users', async () => {
+test('search users', async () => {
   renderWithProviders(<App />);
 
   userEvent.type(screen.getByRole('textbox'), TEST_USER_ID);
@@ -36,15 +37,7 @@ test.skip('search users', async () => {
 });
 
 test('visit user page', async () => {
-  render(
-    <UserProvider>
-      <AlertProvider>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </AlertProvider>
-    </UserProvider>
-  );
+  renderWithProviders(<App />);
 
   userEvent.type(screen.getByRole('textbox'), TEST_USER_ID);
   userEvent.click(screen.getByRole('button', { name: /go/i }));
@@ -61,4 +54,48 @@ test('visit user page', async () => {
 
   const firstRepo = await screen.findByText(repos[0].name);
   expect(firstRepo).toBeVisible();
+});
+
+test('navigates to about page', () => {
+  renderWithProviders(<App />);
+
+  userEvent.click(
+    screen.getByRole('link', {
+      name: /about/i,
+    })
+  );
+
+  expect(window.location.pathname).toBe('/about');
+});
+
+test('navigates to home page', () => {
+  renderWithProviders(<App />);
+
+  userEvent.click(
+    screen.getByRole('link', {
+      name: /home/i,
+    })
+  );
+
+  expect(window.location.pathname).toBe('/');
+});
+
+test('logo navigates to home page', () => {
+  renderWithProviders(<App />);
+
+  userEvent.click(
+    screen.getByRole('img', {
+      name: /logo/i,
+    })
+  );
+
+  expect(window.location.pathname).toBe('/');
+});
+
+test('app name navigates to home page', () => {
+  renderWithProviders(<App />);
+
+  userEvent.click(screen.getByText(APP_NAME));
+
+  expect(window.location.pathname).toBe('/');
 });
