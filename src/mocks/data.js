@@ -20,6 +20,8 @@ export const user = {
   following: 0,
 };
 
+export const TEST_USER_ID = user.login;
+
 export const users = [
   { id: 1, login: 'user1' },
   { id: 2, login: 'user2' },
