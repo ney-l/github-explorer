@@ -3,17 +3,15 @@ import {
   screen,
   waitForElementToBeRemoved,
 } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
 
+import { MemoryRouter, useParams } from 'react-router-dom';
 import { AlertProvider, UserProvider } from 'context';
 import { User } from 'pages';
-import { repos, user } from 'mocks/data';
+import { repos, TEST_USER_ID, user } from 'mocks/data';
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
-  useParams: () => ({
-    username: 'ney-l',
-  }),
+  useParams: jest.fn(),
 }));
 
 beforeEach(() => {
@@ -21,6 +19,9 @@ beforeEach(() => {
 });
 
 test('shows user info and repos', async () => {
+  useParams.mockReturnValue({
+    username: TEST_USER_ID,
+  });
   render(
     <MemoryRouter>
       <UserProvider>
