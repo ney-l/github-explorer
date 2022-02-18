@@ -1,5 +1,5 @@
 import { useEffect, useContext } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import { UserContext } from 'context/users/UserContext';
 import { Spinner } from 'components/layout/Spinner';
 import { FaCodepen, FaStore, FaUserFriends, FaUsers } from 'react-icons/fa';
@@ -10,7 +10,8 @@ import { RepoList } from 'components/repos/RepoList';
 
 export function User() {
   const { username } = useParams();
-  const { getUser, isLoading, user, getUserRepos, repos } =
+  const navigate = useNavigate();
+  const { getUser, isLoading, user, getUserRepos, repos, error } =
     useContext(UserContext);
 
   const userRepo = repos[username];
@@ -25,6 +26,10 @@ export function User() {
 
   if (isLoading) {
     return <Spinner />;
+  }
+
+  if (error === 'Not Found') {
+    navigate('/notfound');
   }
 
   const { avatarUrl, name, followers, following, publicRepos, publicGists } =
